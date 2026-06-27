@@ -16,6 +16,8 @@ export async function getWorkers() {
     keys.push(...result.keys);
   } while (cursor !== '0');
 
+  console.log("Worker keys:", keys);
+
   if (keys.length === 0) return [];
 
   const workers = await Promise.all(
