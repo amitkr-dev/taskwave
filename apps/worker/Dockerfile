@@ -1,6 +1,11 @@
 FROM node:22-alpine
+
 WORKDIR /app
-COPY apps/worker/package.json apps/worker/package-lock.json* ./
-RUN npm ci --production
-COPY apps/worker/ .
-CMD ["node", "src/worker.js"]
+
+COPY apps/worker/package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY apps/worker .
+
+CMD ["npm", "start"]
